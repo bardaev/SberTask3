@@ -1,8 +1,10 @@
 package com.sber.task3.service;
 
+import com.sber.task3.dto.VacancyDto;
 import com.sber.task3.entity.ListVacancy;
 import com.sber.task3.entity.Vacancy;
 import com.sber.task3.repository.IVacancyRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,15 +12,18 @@ import org.springframework.stereotype.Service;
 public class VacancyServiceImpl implements IVacancyService {
 
     private IVacancyRepository vacancyService;
+    private ModelMapper mapper;
 
     @Autowired
-    public VacancyServiceImpl(IVacancyRepository vacancyService) {
+    public VacancyServiceImpl(IVacancyRepository vacancyService, ModelMapper mapper) {
         this.vacancyService = vacancyService;
+        this.mapper = mapper;
     }
 
     @Override
-    public Vacancy createVacancy(Vacancy vacancy) {
-        return vacancyService.createVacancy(vacancy);
+    public VacancyDto createVacancy(VacancyDto vacancy) {
+        Vacancy v = mapper.map(vacancy, Vacancy.class);
+        return mapper.map(vacancyService.createVacancy(v), VacancyDto.class);
     }
 
     @Override
@@ -27,12 +32,14 @@ public class VacancyServiceImpl implements IVacancyService {
     }
 
     @Override
-    public Vacancy getVacancyById(Long id) {
-        return vacancyService.getVacancyById(id);
+    public VacancyDto getVacancyById(Long id) {
+        Vacancy vacancy = vacancyService.getVacancyById(id);
+        return mapper.map(vacancy, VacancyDto.class);
     }
 
     @Override
-    public Vacancy deleteVacancy(Long id) {
-        return vacancyService.deleteVacancy(id);
+    public VacancyDto deleteVacancy(Long id) {
+        Vacancy vacancy = vacancyService.deleteVacancy(id);
+        return mapper.map(vacancy, VacancyDto.class);
     }
 }

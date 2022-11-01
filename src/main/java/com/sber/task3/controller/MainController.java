@@ -1,5 +1,6 @@
 package com.sber.task3.controller;
 
+import com.sber.task3.dto.VacancyDto;
 import com.sber.task3.entity.ListVacancy;
 import com.sber.task3.entity.Vacancy;
 import com.sber.task3.service.IVacancyService;
@@ -18,7 +19,7 @@ public class MainController {
     }
 
     @PutMapping
-    public Vacancy createVacancy(@RequestBody Vacancy vacancy) {
+    public VacancyDto createVacancy(@RequestBody VacancyDto vacancy) {
         return vacancyService.createVacancy(vacancy);
     }
 
@@ -28,12 +29,12 @@ public class MainController {
     }
 
     @GetMapping(path = "{id}")
-    public Vacancy getVacancyById(@PathVariable(value = "id") Long id) {
+    public VacancyDto getVacancyById(@PathVariable(value = "id") Long id) {
         return vacancyService.getVacancyById(id);
     }
 
     @DeleteMapping(path = "{id}")
-    public Vacancy deleteVacancyById(@PathVariable(value = "id") Long id) {
+    public VacancyDto deleteVacancyById(@PathVariable(value = "id") Long id) {
         return vacancyService.deleteVacancy(id);
     }
 }
