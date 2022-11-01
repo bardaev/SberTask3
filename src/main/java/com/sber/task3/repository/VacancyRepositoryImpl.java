@@ -13,7 +13,7 @@ import java.util.List;
 @Transactional
 public class VacancyRepositoryImpl implements IVacancyRepository {
 
-    private EntityManager em;
+    private final EntityManager em;
 
     @Autowired
     public VacancyRepositoryImpl(EntityManager em) {

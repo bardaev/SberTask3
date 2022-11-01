@@ -2,7 +2,6 @@ package com.sber.task3.controller;
 
 import com.sber.task3.dto.VacancyDto;
 import com.sber.task3.entity.ListVacancy;
-import com.sber.task3.entity.Vacancy;
 import com.sber.task3.service.IVacancyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/vacancy")
 public class MainController {
 
-    private IVacancyService vacancyService;
+    private final IVacancyService vacancyService;
 
     @Autowired
     public MainController(IVacancyService vacancyService) {

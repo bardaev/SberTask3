@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class VacancyServiceImpl implements IVacancyService {
 
-    private IVacancyRepository vacancyService;
-    private ModelMapper mapper;
+    private final IVacancyRepository vacancyService;
+    private final ModelMapper mapper;
 
     @Autowired
     public VacancyServiceImpl(IVacancyRepository vacancyService, ModelMapper mapper) {
